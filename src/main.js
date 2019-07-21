@@ -1,14 +1,18 @@
-import './css/index.css';
-import './css/index.less';
-import './css/index.scss';
-import 'bootstrap/dist/css/bootstrap.css';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from './App.vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
-console.log('啊哈2哈哈哈哈2ssssswsa啊实打实')
+Vue.use(VueRouter);
+Vue.use(ElementUI);//饿了么组件库
+import router from './router.js'
 
-
-class  Person {
-    static info = {
-        name:'justingcity',
-        age:22
-    }
-}
+let vm = new Vue({
+    el:"#app",
+    data:{
+        msg:'嘻嘻嘻'
+    },
+    render:c=>c(App),
+    router
+})

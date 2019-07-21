@@ -1,5 +1,6 @@
 const path = require('path')
 const htmlWebpackPlugin  = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
     entry: path.join(__dirname,'./src/main.js'),
     output:{
@@ -15,10 +16,15 @@ module.exports = {
         new htmlWebpackPlugin({
             template: path.join(__dirname, './src/index.html'),//指定模板页面，
             filename: 'index.html'
-        })
+        }),
+        new VueLoaderPlugin()
     ],
     module:{//配置 第三方模块 加载器
         rules:[
+            {
+                test: /\.vue$/,
+                use:['vue-loader']
+            },
             {
                 test: /\.css$/,
                 use:['style-loader', 'css-loader']
@@ -55,6 +61,11 @@ module.exports = {
                 exclude:/node_modules/
             }
         ]
-    }
+    },
+    // resolve:{
+    //     alias:{
+    //         "vue$": "vue/dist/vue.js"
+    //     }
+    // }
         
 }
